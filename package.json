@@ -1,0 +1,16 @@
+{
+  "name": "skillora_be",
+  "version": "1.0.0",
+  "description": "Backend For Skillora",
+  "license": "ISC",
+  "author": "Sahad",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}
