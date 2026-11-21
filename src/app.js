@@ -1,13 +1,17 @@
 const express = require('express');
+const connectDb = require('../src/config/database');
 
 const app = express();
 
-app.listen(7777,()=>{
+
+connectDb().then(()=>{
+  console.log('connected mongoose');
+  app.listen(7777,()=>{
     console.log('working with 7777 port');
 });
-
-app.use('/test',(req,res)=>{
-    res.send('Skillora here');
+}).catch((e)=>{
+    console.log('fail to connect mongoose');
 });
 
-app.use(express.json());
+
+
