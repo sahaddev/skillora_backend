@@ -22,7 +22,6 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     trim: true,
     maxLength:25,
-
   },
 
   password: {
@@ -47,10 +46,6 @@ const userSchema = new mongoose.Schema({
     ref: 'Skill'
   }],
 
-  learningInterests: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Skill'
-  }],
 
   isActive: {
     type: Boolean,
