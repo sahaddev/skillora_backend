@@ -3,35 +3,60 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
+    maxLength:25,
   },
+
   lastName: {
     type: String,
-    required: true
+    trim: true,
+    maxLength:25,
+
   },
-  emailId: {
+
+  email: {
     type: String,
-    required: true
+    required: true,
+    unique: true,
+    lowercase: true,
+    trim: true,
+    maxLength:25,
+
   },
+
   password: {
     type: String,
-    required: true
+    required: true,
   },
-  age: {
-    type: Number,
-    required: true
-  },
-  gender: {
+
+  bio: {
     type: String,
-    required: true
+    default: '',
+    maxLength:100,
+
   },
-  language: {
-    type: String
-  },
-  subject: {
+
+  profileImage: {
     type: String,
-    required: true
+    default: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+  },
+
+  skills: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Skill'
+  }],
+
+  learningInterests: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Skill'
+  }],
+
+  isActive: {
+    type: Boolean,
+    default: true
   }
-});
+
+}, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
