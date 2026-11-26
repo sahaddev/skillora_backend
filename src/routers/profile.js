@@ -14,7 +14,7 @@ profileRouter.patch('/profile/edit', userAuthMiddlewares, (req, res) => {
     }
     const loggedInUser = req.user;
 
-    Object.keys(res.body).forEach((key) => (loggedInUser[key] = res.body[key]));
+    Object.keys(req.body).forEach((key) => (loggedInUser[key] = req.body[key]));
 
     loggedInUser.save();
     res.status(200).send({ "status": true, 'message': 'User update successfully' });
@@ -32,8 +32,9 @@ profileRouter.get('/profile/view', userAuthMiddlewares, (req, res) => {
 })
 
 profileRouter.patch('/profile/password', userAuthMiddlewares, async (req, res) => {
-  const { oldPassword, newPassword } = req.body;
   try {
+    const { oldPassword, newPassword } = req.body;
+
     // check the password
     if (!oldPassword || !newPassword) {
       throw new Error('check required fields');
@@ -59,7 +60,7 @@ profileRouter.patch('/profile/password', userAuthMiddlewares, async (req, res) =
 
 
   } catch (error) {
-    res.status(400).send({ status: false, message: error });
+    res.status(400).send({ status: false, message: error.message });
   }
 
 });

@@ -53,8 +53,8 @@ authRouter.post('/login', async (req, res) => {
     }
 });
 
-authRouter.post('logout', (req, res) => {
-    req.session = null;
+authRouter.post('/logout', (req, res) => {
+    res.clearCookie('token');
     res.json({ status: true, message: 'User logOut successfully' });
 });
 
