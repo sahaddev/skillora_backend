@@ -17,4 +17,13 @@ const signupValidator =async (req)=>{
     }
 }
 
-module.exports = {signupValidator,};
+const validateEditProfile = (req)=>{
+   
+ const validEditedFiled = ['firstName','lastName','bio','profileImage','skills'];
+ 
+ const isValidFields =  Object.keys(req.body).every((key)=>validEditedFiled.includes(key));
+
+ return isValidFields;
+}
+
+module.exports = {signupValidator,validateEditProfile};
