@@ -5,13 +5,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    maxLength:25,
+    maxLength: 25,
   },
 
   lastName: {
     type: String,
     trim: true,
-    maxLength:25,
+    maxLength: 25,
 
   },
 
@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     lowercase: true,
     trim: true,
-    maxLength:25,
+    maxLength: 25,
   },
 
   password: {
@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
   bio: {
     type: String,
     default: '',
-    maxLength:100,
+    maxLength: 100,
 
   },
 
@@ -53,5 +53,13 @@ const userSchema = new mongoose.Schema({
   }
 
 }, { timestamps: true });
+
+userSchema.methods.getJWT = async function () {
+  const user = this;
+  const token = await jwt.sign({ _id: user._id }, 'SKILLORA@123', {
+    expiresIn: '1d',
+  });
+  return token;
+}
 
 module.exports = mongoose.model('User', userSchema);
