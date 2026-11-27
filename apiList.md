@@ -14,8 +14,8 @@ Skillora - APIs
 
 ## ConnectionRequestRouter
 
-- POST /request/send/interseted/:userId
-- POST /request/send/ignored/:userId
+- POST /request/send/:status/:userId
+
 - POST /request/review/accepted/:requestId
 - POST /request/review/rejected/:requestId
 
